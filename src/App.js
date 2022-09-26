@@ -8,15 +8,19 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 function App() {
+
   const [conversionType, setConversionType] = useState("digital")
   const [data, setData] = useState(null)
   const [result, setResult] = useState(null)
 
+  // Handle the change of Conversion type
   const handleChangeType = (value) => {
     setResult(null)
     setData("")
     setConversionType(value)
   }
+
+  // Format data to send to backend
   const handleChangeEntry = (type, value) => {
     let temp;
     if (type === "berlin") {
@@ -36,8 +40,8 @@ function App() {
 
   }
 
+// Make http request to backend for conversion to digital time
   const handleConvertToDigital = async () => {
-
     const request = await convertToDigitalTime(data);
     if (request.response && request.response.status !== 200) {
       toast.error(`Something went wrong. Please check the value entered correctly.`, {
@@ -48,6 +52,7 @@ function App() {
     }
   }
 
+// Make http request to backend for conversion to berlin time
   const handleConvertToBerlin = async () => {
     const request = await convertToBerlinTime(data);
     if (request.response && request.response.status !== 200) {
@@ -59,6 +64,7 @@ function App() {
     }
   }
 
+  // Launch http request function depending on conversion type
   const handleClickSubmitButton = () => {
     if(conversionType === "berlin" ) handleConvertToBerlin()
     if(conversionType === "digital" ) handleConvertToDigital()
