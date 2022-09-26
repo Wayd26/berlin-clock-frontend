@@ -1,0 +1,15 @@
+.digital-time-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.digital-time__input {
+    width: 50px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.digital-time__input::content {
+    font-size: 20px;
+    font-weight: 700;
+}
